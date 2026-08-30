@@ -1,0 +1,118 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Optimisation & Acquisition - Simulateur Intelligent</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <style>
+        @import url('https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700&display=swap');
+        body { font-family: 'Plus Jakarta+Sans', sans-serif; }
+    </style>
+</head>
+<body class="bg-[#0b0f19] text-gray-100 min-h-screen flex flex-col justify-between antialiased">
+
+    <header class="w-full border-b border-gray-800/60 py-4 px-6 flex justify-between items-center backdrop-blur-md sticky top-0 bg-[#0b0f19]/80 z-50">
+        <div class="flex items-center space-x-2">
+            <div class="w-8 h-8 rounded-lg bg-gradient-to-tr from-amber-400 to-amber-600 flex items-center justify-center font-bold text-gray-900 text-sm">
+                VS
+            </div>
+            <span class="font-semibold tracking-tight text-sm">Vente & Automatisation</span>
+        </div>
+        <span class="text-xs text-amber-400 bg-amber-400/10 px-3 py-1 rounded-full border border-amber-400/20">Système Actif</span>
+    </header>
+
+    <main class="max-w-xl w-full mx-auto px-4 py-10 flex-grow flex flex-col justify-center">
+        
+        <div class="text-center mb-8">
+            <h1 class="text-2xl sm:text-3xl font-bold tracking-tight mb-3">
+                Simulez votre <span class="text-amber-400">potentiel d'économie</span> en 30 secondes.
+            </h1>
+            <p class="text-gray-400 text-sm">
+                Répondez à ce questionnaire rapide pour identifier votre angle de conversion optimal et obtenir votre analyse personnalisée.
+            </p>
+        </div>
+
+        <div class="bg-gray-900/60 border border-gray-800 rounded-2xl p-6 sm:p-8 backdrop-blur-xl shadow-2xl relative overflow-hidden">
+            
+            <div id="step-1" class="space-y-5">
+                <div>
+                    <label class="block text-xs font-medium text-gray-400 uppercase tracking-wider mb-2">1. Quel est votre volume de prospects / clients par mois ?</label>
+                    <select id="volume" class="w-full bg-gray-950 border border-gray-800 rounded-xl px-4 py-3 text-sm focus:outline-none focus:border-amber-400 transition-colors">
+                        <option value="low">Moins de 100 par mois</option>
+                        <option value="mid">Entre 100 et 500 par mois</option>
+                        <option value="high">Plus de 500 par mois</option>
+                    </select>
+                </div>
+
+                <div>
+                    <label class="block text-xs font-medium text-gray-400 uppercase tracking-wider mb-2">2. Quel est votre principal frein actuel ?</label>
+                    <select id="friction" class="w-full bg-gray-950 border border-gray-800 rounded-xl px-4 py-3 text-sm focus:outline-none focus:border-amber-400 transition-colors">
+                        <option value="qualification">Mauvaise qualification des leads</option>
+                        <option value="closing">Taux de closing trop bas</option>
+                        <option value="volume">Manque cruel de trafic qualifié</option>
+                    </select>
+                </div>
+
+                <button onclick="nextStep()" class="w-full mt-4 bg-gradient-to-r from-amber-400 to-amber-500 text-gray-950 font-semibold py-3.5 px-4 rounded-xl text-sm hover:opacity-95 transition-all shadow-lg shadow-amber-400/10 flex items-center justify-center space-x-2">
+                    <span>Lancer l'analyse algorithmique</span>
+                    <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M14 5l7 7m0 0l-7 7m7-7H3"/></svg>
+                </button>
+            </div>
+
+            <div id="step-2" class="hidden space-y-6 text-center animate-fade-in">
+                <div class="inline-flex p-3 rounded-2xl bg-amber-400/10 text-amber-400 mb-2 border border-amber-400/20">
+                    <svg class="w-8 h-8" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 12l2 2 4-4m6 2a9 9 0 11-18 0 9 9 0 0118 0z"/></svg>
+                </div>
+                <h2 class="text-xl font-bold">Analyse prête !</h2>
+                <p class="text-gray-400 text-sm">
+                    D'après vos réponses, un gain de <span class="text-amber-400 font-bold">+35% de conversion</span> est immédiatement accessible en automatisant votre tunnel d'appel.
+                </p>
+
+                <div class="space-y-3 pt-2">
+                    <input type="text" id="userName" placeholder="Votre Prénom" class="w-full bg-gray-950 border border-gray-800 rounded-xl px-4 py-3 text-sm focus:outline-none focus:border-amber-400">
+                    <input type="email" id="userEmail" placeholder="Votre email professionnel ou numéro WhatsApp" class="w-full bg-gray-950 border border-gray-800 rounded-xl px-4 py-3 text-sm focus:outline-none focus:border-amber-400">
+                    
+                    <button onclick="submitData()" class="w-full bg-gradient-to-r from-amber-400 to-amber-500 text-gray-950 font-semibold py-3.5 px-4 rounded-xl text-sm hover:opacity-95 transition-all shadow-lg shadow-amber-400/10">
+                        Recevoir le rapport complet & la stratégie
+                    </button>
+                </div>
+            </div>
+
+            <div id="step-3" class="hidden space-y-4 py-6 text-center">
+                <h3 class="text-xl font-bold text-emerald-400">Stratégie enregistrée 🚀</h3>
+                <p class="text-gray-300 text-sm">
+                    Votre dossier a été transmis. Vous allez recevoir vos accès et votre plan d'action directement.
+                </p>
+            </div>
+
+        </div>
+    </main>
+
+    <footer class="w-full text-center py-6 text-xs text-gray-600 border-t border-gray-800/40">
+        Propulsé par une architecture front-end hautement optimisée.
+    </footer>
+
+    <script>
+        function nextStep() {
+            // Effet de transition simple entre l'étape 1 et 2
+            document.getElementById('step-1').classList.add('hidden');
+            document.getElementById('step-2').classList.remove('hidden');
+        }
+
+        function submitData() {
+            const name = document.getElementById('userName').value;
+            const contact = document.getElementById('userEmail').value;
+            
+            if(!name || !contact) {
+                alert('Veuillez remplir vos informations pour recevoir le rapport.');
+                return;
+            }
+
+            // Ici, dans la version avancée, tu connectes cette fonction à un webhook (par exemple vers ton bot Telegram ou ta base de données)
+            document.getElementById('step-2').classList.add('hidden');
+            document.getElementById('step-3').classList.remove('hidden');
+        }
+    </script>
+</body>
+</html>
